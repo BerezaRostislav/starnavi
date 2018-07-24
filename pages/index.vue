@@ -18,24 +18,26 @@
           </v-btn-toggle>
 
           <v-card-text>КОЛЛИЧЕСТВО КОМНАТ</v-card-text>
+           <div style="text-align: center;">
             <!-- <v-checkbox v-model="roomsvalueselected" label="ВСЕ" :value="(1|2|3)" @click="toggleAll"></v-checkbox> -->
-            <v-checkbox v-model="roomsvalueselected" label="1" :value="1"></v-checkbox>
-            <v-checkbox v-model="roomsvalueselected" label="2" :value="2"></v-checkbox>
-            <v-checkbox v-model="roomsvalueselected" label="3" :value="3"></v-checkbox>
+            <v-checkbox v-model="roomsvalueselected" label="1 комната" :value="1"></v-checkbox>
+            <v-checkbox v-model="roomsvalueselected" label="2 комнаты" :value="2"></v-checkbox>
+            <v-checkbox v-model="roomsvalueselected" label="3 комнаты" :value="3"></v-checkbox>
+           </div>
           <v-card-text>ЦЕНА </v-card-text>
           
           <span> от </span>
           <input v-model="lowerprice" placeholder=" Минимальная цена">
           <span> до </span>
-          <input v-model="maxprice" placeholder=" ">
-          <v-flex class="px-3">
+          <input v-model="maxprice" placeholder="Максимальная цена">
+          <!-- <v-flex class="px-3">
             <v-range-slider
               v-model="value3"
               :max="6000000"
               :min="20"
               :step="10"
             ></v-range-slider>
-          </v-flex>
+          </v-flex> -->
           <v-card-text>РЕЙТИНГ</v-card-text>
           <no-ssr>
           <star-rating v-model="ratingraw" @rating-selected="setRating" :show-rating="false" :glow="16" :rounded-corners="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"></star-rating>
@@ -62,6 +64,7 @@
             />
           </v-flex>
         </v-layout>
+
       </v-flex>
     </v-layout>
   </v-container>
@@ -91,7 +94,7 @@ export default {
       value3: [],
       checkbox: true,
       lowerprice: null,
-      maxprice: 999999999999,
+      maxprice: null,
       text: "UAH",
       pricemodifier: 1,
       fetchedHouses: [],
@@ -137,6 +140,10 @@ export default {
 
     isShown (slab) {
       const { total_rooms, rating, price } = slab
+      if (this.maxprice === null)
+        return this.generatevalue.includes(total_rooms)
+          && this.generaterating.includes(rating)
+          && price * this.pricemodifier > this.lowerprice
 
       return this.generatevalue.includes(total_rooms)
           && this.generaterating.includes(rating)
@@ -151,7 +158,7 @@ export default {
   computed: {
     houses () {
       /* Filter fetched array here and return for render only needed items */
-      if (this.roomsvalue.length === 0 && this.houseratingselected.length === 0)
+      if (this.roomsvalue.length === 0 && this.houseratingselected.length === 0 )
         return this.fetchedHouses
 
       return this.fetchedHouses.filter(x => this.isShown(x)) || []
@@ -163,10 +170,20 @@ export default {
     },
     generatevalue() {
       const rooms = this.roomsvalue.filter(value => this.roomsvalueselected.includes(value))
-      return rooms.length > 0 ? rooms : [1,2,3,4,5]      
+      return rooms.length > 0 ? rooms : [1,2,3]      
     }
   },
 
   watch: {}
 };
 </script>
+
+<style>
+.v-input--selection-controls {
+    padding: 0px 0;
+}
+.v-input {
+    margin-top: 0px;
+
+}
+</style>
