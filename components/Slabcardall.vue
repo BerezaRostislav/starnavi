@@ -12,7 +12,7 @@
         </div>
         <div>
         <no-ssr>
-        <star-rating v-model="rating" @rating-selected="setRating" :show-rating="false" :glow="16" :rounded-corners="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"></star-rating>
+        <star-rating v-model="rating" :read-only="true"	 @rating-selected="setRating" :show-rating="false" :glow="16" :rounded-corners="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"></star-rating>
         </no-ssr>
         </div>
     </v-card>
