@@ -42,7 +42,7 @@
           <no-ssr>
           <star-rating v-model="ratingraw" @rating-selected="setRating" :show-rating="false" :glow="16" :rounded-corners="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"></star-rating>
           </no-ssr>
-          <a @click="houseratingselected = []; ratingraw = 0; roomsvalueselected = [] ">Reset Rating</a>
+          <a @click="houseratingselected = []; ratingraw = 0; roomsvalueselected = [];maxprice = null; lowerprice = null; ">Reset Rating</a>
         </v-card>
       </v-flex>
       
@@ -140,7 +140,7 @@ export default {
 
     isShown (slab) {
       const { total_rooms, rating, price } = slab
-      if (this.maxprice === null)
+      if (this.maxprice === null || this.maxprice.length === 0)
         return this.generatevalue.includes(total_rooms)
           && this.generaterating.includes(rating)
           && price * this.pricemodifier > this.lowerprice
