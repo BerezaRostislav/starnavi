@@ -30,16 +30,16 @@
               <v-checkbox v-model="roomsvalueselected" label="3 комнаты" :value="3"></v-checkbox>
               </div>
             <v-card-text>ЦЕНА </v-card-text>
-            <v-layout align-center justify-center fill-height>
-            <v-flex xs1 sm6 align-center>
-            <span> от </span>
+            <v-layout align-start justify-center row fill-height>
+            <v-flex xs12 sm6>
             <v-text-field
               v-model="lowerprice"
               solo
               label="Минимальная цена"
               clearable
             ></v-text-field>
-            <span> до  </span>
+            </v-flex>
+            <v-flex xs12 sm6>
             <v-text-field
               v-model="maxprice"
               solo
