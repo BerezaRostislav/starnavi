@@ -63,7 +63,7 @@
             <v-btn @click="houseratingselected = []; ratingraw = 0; roomsvalueselected = [];maxprice = null; lowerprice = null; ">Обновить фильтры</v-btn>
           </v-card>
         </v-flex>  
-        <v-flex xs3>
+        <v-flex xs6 style="padding-top: 0px;">
           <slabcard
             v-for="slab in houses"
             :key="slab.id"
@@ -192,10 +192,14 @@ export default {
 
 <style>
 .v-input--selection-controls {
-    padding: 0px 0;
+  padding: 0px 0;
 }
 .v-input {
-    margin-top: 0px;
+  margin-top: 0px;
 
+}
+.container.fluid {
+  padding-top: 0px;
+  max-width: 100%;
 }
 </style>
