@@ -1,81 +1,80 @@
 <template>
-  <v-container column justify-center align-center>
-    <v-layout align-center (xs12 | sm12 | md12 ) justify-center>
+  <v-container column>
+    <v-layout align-center justify-center>
       <div class="text-xs-center">
         <logo/>
       </div>
     </v-layout>
     <v-layout>
-      <v-flex xs12 sm12 md2>
-        <v-card>
-          <v-card-text>ВАЛЮТА</v-card-text>      
-          <v-btn-toggle v-model="text">
-            <v-btn v-on:click="UAH" flat value="UAH">
-              UAH
-            </v-btn>
-            <v-btn v-on:click="USD" flat value="USD">
-              USD
-            </v-btn>
-            <v-btn v-on:click="EUR" flat value="EUR">
-              EUR
-            </v-btn>
-          </v-btn-toggle>
-
-          <v-card-text>КОЛЛИЧЕСТВО КОМНАТ</v-card-text>
-            <div style="text-align: center;">
-            <!-- <v-checkbox v-model="roomsvalueselected" label="ВСЕ" :value="(1|2|3)" @click="toggleAll"></v-checkbox> -->
-            <v-checkbox v-model="roomsvalueselected" label="1 комната" :value="1"></v-checkbox>
-            <v-checkbox v-model="roomsvalueselected" label="2 комнаты" :value="2"></v-checkbox>
-            <v-checkbox v-model="roomsvalueselected" label="3 комнаты" :value="3"></v-checkbox>
-            </div>
-          <v-card-text>ЦЕНА </v-card-text>
-          <v-layout align-start justify-center row fill-height fluid>
-          <v-flex xs12 >
-          <v-text-field
-            v-model="lowerprice"
-            solo
-            label="Минимальная цена"
-            clearable
-          ></v-text-field>
-          </v-flex>
-          <v-flex xs12>
-          <v-text-field
-            v-model="maxprice"
-            solo
-            label="Максимальная цена"
-            clearable
-          ></v-text-field>
-          </v-flex>
-          </v-layout>
-          <!-- <v-flex class="px-3">
-            <v-range-slider
-              v-model="value3"
-              :max="6000000"
-              :min="20"
-              :step="10"
-            ></v-range-slider>
-          </v-flex> -->
-          <v-card-text>РЕЙТИНГ</v-card-text>
-          <no-ssr>
-          <star-rating v-model="ratingraw" @rating-selected="setRating" :show-rating="false" :glow="16" :rounded-corners="true" :star-size="50" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"></star-rating>
-          </no-ssr>
-          <v-btn @click="houseratingselected = []; ratingraw = 0; roomsvalueselected = [];maxprice = null; lowerprice = null; ">Обновить фильтры</v-btn>
-        </v-card>
-      </v-flex>  
-      <v-flex xs12 sm12 md10 style="padding-top: 0px;">
-        <slabcard
-          v-for="slab in houses"
-          :key="slab.id"
-          :id="slab.id"
-          :slabfrontimage="slab.images[0]"
-          :price="slab.price * pricemodifier"
-          :rooms="slab.total_rooms"
-          :rating="slab.rating"
-          :full_address="slab.full_address"
-          :description="slab.description"
-          :public_date="slab.public_date"
-        />
-      </v-flex>
+    <v-flex xs12 sm3 md3 lg3 fluid>
+      <v-card style="width:95%; justify-center">
+        <v-card-text>ВАЛЮТА</v-card-text>      
+        <v-btn-toggle v-model="text">
+          <v-btn v-on:click="UAH" flat value="UAH">
+            UAH
+          </v-btn>
+          <v-btn v-on:click="USD" flat value="USD">
+            USD
+          </v-btn>
+          <v-btn v-on:click="EUR" flat value="EUR">
+            EUR
+          </v-btn>
+        </v-btn-toggle>
+        <v-card-text>КОЛЛИЧЕСТВО КОМНАТ</v-card-text>
+          <div style="text-align: center;">
+          <!-- <v-checkbox v-model="roomsvalueselected" label="ВСЕ" :value="(1|2|3)" @click="toggleAll"></v-checkbox> -->
+          <v-checkbox v-model="roomsvalueselected" label="1 комната" :value="1"></v-checkbox>
+          <v-checkbox v-model="roomsvalueselected" label="2 комнаты" :value="2"></v-checkbox>
+          <v-checkbox v-model="roomsvalueselected" label="3 комнаты" :value="3"></v-checkbox>
+          </div>
+        <v-card-text>ЦЕНА </v-card-text>
+        <v-layout>
+        <v-flex xs6 >
+        <v-text-field
+          v-model="lowerprice"
+          solo
+          label="Минимальная цена"
+          clearable
+        ></v-text-field>
+        </v-flex>
+        <v-flex xs6>
+        <v-text-field
+          v-model="maxprice"
+          solo
+          label="Максимальная цена"
+          clearable
+        ></v-text-field>
+        </v-flex>
+        </v-layout>
+        <!-- <v-flex class="px-3">
+          <v-range-slider
+            v-model="value3"
+            :max="6000000"
+            :min="20"
+            :step="10"
+          ></v-range-slider>
+        </v-flex> -->
+        <v-card-text>РЕЙТИНГ</v-card-text>
+        <no-ssr>
+        <star-rating v-model="ratingraw" @rating-selected="setRating" :show-rating="false" :glow="16" :rounded-corners="true" :star-size="50" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"></star-rating>
+        </no-ssr>
+        <v-btn @click="houseratingselected = []; ratingraw = 0; roomsvalueselected = [];maxprice = null; lowerprice = null; ">Обновить фильтры</v-btn>
+      </v-card>
+    </v-flex>  
+    <v-flex xs12 sm9 md9 lg9 style="padding-top: 0px;" column>
+      <slabcard
+        v-for="slab in houses"
+        :key="slab.id"
+        :id="slab.id"
+        :slabfrontimage="slab.images[0]"
+        :price="slab.price * pricemodifier"
+        :rooms="slab.total_rooms"
+        :rating="slab.rating"
+        :full_address="slab.full_address"
+        :description="slab.description"
+        :public_date="slab.public_date"
+      />
+    </v-flex>
     </v-layout>
   </v-container>
 </template>

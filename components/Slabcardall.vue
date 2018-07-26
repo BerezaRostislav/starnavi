@@ -12,9 +12,11 @@
                     <v-flex xs8 sm8 md8 >
                         <h1>{{ full_address }}</h1>
                         <span>{{ description }} </span>
-                        <span>{{ public_date }} </span>
-                        <span style="margin-left: 10px;">Кол-во комнат - {{ rooms }}  </span>
-                        <v-btn :to="'/' + id" style="margin-right: 10px;color:red;"> Купить за - {{ price }}$</v-btn>
+                        <div style="text-align: center;">
+                          <span style="margin-right: 20px;"><v-icon>home</v-icon>Кол-во комнат - {{ rooms }} </span>
+                          <span style="margin-left: 20px;"><v-icon>event</v-icon>{{ public_date }} </span>
+                        </div>
+                        <v-btn absolute right bottom :to="'/' + id" style="margin-right: 10px; margin-bottom: 40px; color:red;"> Купить за - {{ price }}$</v-btn>
                     </v-flex>
                     </v-layout>
                 </v-card>
@@ -44,6 +46,7 @@ a {
     justify-content: space-between;
     box-sizing: border-box;
     /* height: 500px; */
+    min-height: 400px;
     width: 90%;
     padding-top: 0px;
     padding: 8px;
