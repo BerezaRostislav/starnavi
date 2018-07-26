@@ -1,6 +1,7 @@
 # frontstarnavi
 
-> Test project for starnavi
+[Demo of site](http://whole-route.surge.sh/)
+
 
 ## Build Setup
 
