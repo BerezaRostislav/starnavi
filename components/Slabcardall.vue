@@ -3,13 +3,13 @@
         <v-layout align-start justify-center fill-height row wrap>
                 <v-card class="slabcard" >
                     <v-layout row wrap>
-                    <v-flex xs12 sm6 md4 >
+                    <v-flex xs4 sm4 md4 >
                         <div class="slabfrontimage" :style="{backgroundImage: 'url('+ slabfrontimage + ')'}"></div>
                         <no-ssr>
-                        <star-rating v-model="rating" :read-only="true" :show-rating="false" :glow="16" :rounded-corners="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"></star-rating>
+                        <star-rating v-model="rating" :read-only="true" :show-rating="false" :glow="16" :rounded-corners="true" :star-size="30" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"></star-rating>
                         </no-ssr>
                     </v-flex>
-                    <v-flex xs12 sm6 md8 >
+                    <v-flex xs8 sm8 md8 >
                         <h1>{{ full_address }}</h1>
                         <span>{{ description }} </span>
                         <span>{{ public_date }} </span>
@@ -57,8 +57,8 @@ a {
 .slabfrontimage {
     background-position: center;
     background-size: cover;
-    width: 350px;
-    height: 460px;
+    width: 90%;
+    height: 90%;
 }
 
 </style>
